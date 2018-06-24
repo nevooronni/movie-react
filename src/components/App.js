@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import '../App.css';
+//imported components
 import Header from './Header';
 import Movie from './Movie';
+import AddMovie from './AddMovie';
 //JSON objects available via these variables
 import {initialMovies} from '../movies';
 import {additionalMovies} from '../movies';
@@ -36,6 +38,7 @@ class App extends Component {
           }
         </div>
         <div className="add-movies"><button onClick={this.loadAdditionalMovies}>Load more...</button></div>      
+        <AddMovie />
       </div>
     );
   }
