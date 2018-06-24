@@ -17,8 +17,10 @@ class App extends Component {
       //initialize movies state object with the initializeMovies json object
       movies: initialMovies
     };
-  }
 
+    //bind the events in react in order for our component methods to work
+    this.loadAdditionalMovies = this.loadAdditionalMovies.bind(this);
+  }
   render() {
     return (
       <div className="App">
@@ -27,15 +29,24 @@ class App extends Component {
             Sharing a few of our favorite movies
         </p>
         <div className="movies">
-          { 
+          {
             Object
               .keys(this.state.movies)
-              .map(key => <Movie key={key} meta={this.state.movies=[key]} />)
+              .map(key => <Movie key={key} meta={this.state.movies[key]} />)
           }
         </div>
+        <div className="add-movies"><button onClick={this.loadAdditionalMovies}>Load more...</button></div>      
       </div>
     );
   }
+
+  loadAdditionalMovies() {
+    var currentMovies = { ...this.state.movies };
+    var newMovies = Object.assign( currentMovies, additionalMovies );
+   
+    this.setState({ movies: newMovies });
+  }
+
 }
 
 export default App;
