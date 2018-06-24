@@ -2,8 +2,23 @@ import React, { Component } from 'react';
 import '../App.css';
 import Header from './Header';
 import Movie from './Movie';
+//JSON objects available via these variables
+import {initialMovies} from '../movies';
+import {additionalMovies} from '../movies';
 
 class App extends Component {
+  //initialize state object
+  constructor() {
+    //initialized component object before anything else
+    super();
+
+    //this keywored is available inside constructor now
+    this.state = {
+      //initialize movies state object with the initializeMovies json object
+      movies: initialMovies
+    };
+  }
+
   render() {
     return (
       <div className="App">
@@ -12,10 +27,11 @@ class App extends Component {
             Sharing a few of our favorite movies
         </p>
         <div className="movies">
-          <Movie title="50 First Dates" year="2004" description="Henry Roth is a man afraid of commitment up until he meets the beautiful Lucy. They hit it off and Henry thinks he's finally found the girl of his dreams." poster="" />
-          <Movie title="Ferris Bueller's Day Off" year="1986" description="A high school wise guy is determined to have a day off from school, despite what the principal thinks of that." poster=""/>           
-          <Movie title="Matilda" year="1996" description="Story of a wonderful little girl, who happens to be a genius, and her wonderful teacher vs the worst parents ever and the worst school principal imaginable." />
-          <Movie title="Dirty Dancing" year="1987" description="Spending the summer at a Catskills resort with her family, Frances 'Baby' falls in love with the camp's dance instructor, Johnny Castle." poster=""/>
+          { 
+            Object
+              .keys(this.state.movies)
+              .map(key => <Movie key={key} meta={this.state.movies=[key]} />)
+          }
         </div>
       </div>
     );
